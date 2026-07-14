@@ -33,3 +33,12 @@ Review `SOURCES.md` and confirm image permissions and opening hours before comme
 
 - Instagram: https://www.instagram.com/more_than_coffee_and_cocktail/
 - Facebook: https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr
+
+
+## Local SEO landing pages
+
+- `coffee-chalkoutsi.html`
+- `cocktails-chalkoutsi.html`
+- `kiosk-chalkoutsi.html`
+
+See `LOCAL-SEO-ACTION-PLAN.md` for the required Google Business Profile and Search Console steps.

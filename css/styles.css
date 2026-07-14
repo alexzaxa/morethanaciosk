@@ -1356,3 +1356,45 @@ body { background: var(--paper); }
   font-weight: 750;
 }
 .mobile-social-links .svg-icon { width: 19px; height: 19px; }
+
+
+/* Local SEO landing pages and internal discovery links */
+.local-seo-hero .section-title { max-width: 850px; }
+.local-seo-hero--cocktails { background: radial-gradient(circle at 78% 18%, rgba(229,92,67,.2), transparent 30%), #151412; }
+.local-seo-hero--kiosk { background: radial-gradient(circle at 78% 18%, rgba(82,168,120,.2), transparent 30%), #151412; }
+.local-seo-content { position: relative; overflow: hidden; }
+.local-seo-content::after { content: ""; position: absolute; width: 320px; height: 320px; right: -120px; bottom: -150px; border: 1px solid rgba(242,182,45,.24); border-radius: 50%; pointer-events: none; }
+.local-intro-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 70px; align-items: start; }
+.local-copy { display: grid; gap: 18px; color: var(--muted); font-size: 1.06rem; line-height: 1.8; }
+.local-copy p { margin: 0; }
+.seo-menu-grid, .local-feature-grid, .local-search-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.seo-menu-card, .local-feature, .local-search-card { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); box-shadow: var(--shadow-soft); }
+.seo-menu-card h3, .local-feature h2, .local-search-card h3 { margin: 0 0 18px; color: var(--ink); font-size: 1.25rem; }
+.seo-menu-card .menu-price-list { margin: 0; }
+.seo-menu-note { margin: 18px 0 0; color: var(--muted); }
+.local-feature span, .local-search-card > span, .cocktail-signature-grid span { display: inline-flex; margin-bottom: 18px; color: var(--brand-orange); font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.local-feature p, .local-search-card p { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
+.local-search-section { background: #181715; color: #fff; }
+.local-search-section .section-title { color: #fff; }
+.local-search-section .section-copy { color: rgba(255,255,255,.68); }
+.local-search-card { display: block; color: #fff; background: rgba(255,255,255,.055); border-color: rgba(255,255,255,.12); transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.local-search-card h3 { color: #fff; font-size: 1.5rem; }
+.local-search-card p { color: rgba(255,255,255,.68); }
+.local-search-card strong { color: var(--brand-yellow); }
+.local-search-card:hover { transform: translateY(-6px); background: rgba(255,255,255,.09); border-color: rgba(242,182,45,.45); }
+.cocktail-signature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.cocktail-signature-grid article { padding: 32px; border-radius: 26px; background: linear-gradient(145deg, #1c1a18, #2c2722); color: #fff; box-shadow: var(--shadow-raised); }
+.cocktail-signature-grid h2 { margin: 0 0 10px; font-family: var(--font-display); font-size: 2.8rem; font-weight: 400; }
+.cocktail-signature-grid p { margin: 0; color: rgba(255,255,255,.7); line-height: 1.7; }
+.local-faq .faq-list { display: grid; gap: 12px; max-width: 900px; }
+.local-faq details { padding: 0 22px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
+.local-faq summary { cursor: pointer; padding: 20px 34px 20px 0; color: var(--ink); font-weight: 750; position: relative; }
+.local-faq summary::after { content: "+"; position: absolute; right: 0; top: 16px; font-size: 1.5rem; color: var(--brand-orange); }
+.local-faq details[open] summary::after { content: "−"; }
+.local-faq details p { margin: 0; padding: 0 0 20px; color: var(--muted); line-height: 1.7; }
+.local-inline-links { padding: 18px 0; background: #f1eee7; border-top: 1px solid var(--line); }
+.local-inline-links .container { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 22px; }
+.local-inline-links a, .menu-seo-links a { color: var(--ink); font-size: .88rem; font-weight: 750; text-decoration: underline; text-decoration-color: rgba(229,92,67,.4); text-underline-offset: 4px; }
+.menu-seo-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 22px; }
+.official-menu-hero .menu-seo-links a { color: rgba(255,255,255,.9); }
+.kiosk-category-card .text-action { display: inline-flex; margin-top: 14px; }

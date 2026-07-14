@@ -5,11 +5,13 @@
   const navItems = [
     { key: 'home', label: 'Αρχική', href: homeHref },
     { key: 'menu', label: 'Κατάλογος', href: 'menu.html' },
-    { key: 'gallery', label: 'Φωτογραφίες', href: page === 'home' ? '#gallery' : 'index.html#gallery' },
+    { key: 'coffee', label: 'Καφές', href: 'coffee-chalkoutsi.html' },
+    { key: 'cocktails', label: 'Cocktails', href: 'cocktails-chalkoutsi.html' },
     { key: 'directions', label: 'Οδηγίες', href: 'directions.html' },
     { key: 'contact', label: 'Επικοινωνία', href: 'contact.html' }
   ];
-  const activeKey = ['home', 'menu', 'directions', 'contact', 'privacy'].includes(page) ? page : '';
+  const activeKey = ['home', 'menu', 'coffee', 'cocktails', 'kiosk', 'directions', 'contact', 'privacy'].includes(page) ? page : '';
+  const catalogActive = ['menu', 'coffee', 'cocktails', 'kiosk'].includes(page);
   const navMarkup = navItems.map((item) => `<a${item.key === activeKey ? ' class="active" aria-current="page"' : ''} href="${item.href}">${item.label}</a>`).join('');
   const logoMarkup = `
     <img src="assets/images/brand/more-than-kiosk-logo.webp" alt="" width="1000" height="1000">
@@ -65,7 +67,7 @@
             <a href="https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer me" aria-label="Facebook">${icon('facebook')}<span>Facebook</span></a>
           </div>
         </div>
-        <div class="footer-column"><h3>Πλοήγηση</h3>${navMarkup}</div>
+        <div class="footer-column"><h3>Πλοήγηση</h3>${navMarkup}<a${activeKey === 'kiosk' ? ' class="active" aria-current="page"' : ''} href="kiosk-chalkoutsi.html">Περίπτερο στο Χαλκούτσι</a></div>
         <div class="footer-column"><h3>Επικοινωνία</h3><a href="tel:+302295071211">22950 71211</a><a href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">Ποσειδώνος 13<br>Χαλκούτσι, Αττική ${icon('external')}</a><a href="https://www.instagram.com/more_than_coffee_and_cocktail/" target="_blank" rel="noopener noreferrer me">${icon('instagram')}Instagram</a><a href="https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer me">${icon('facebook')}Facebook</a></div>
         <div class="footer-column"><h3>Ωράριο</h3><p>Κυρ–Πεμ<br><strong>06:00–01:00</strong></p><p>Παρ–Σαβ<br><strong>06:00–01:30</strong></p></div>
       </div>
@@ -77,7 +79,7 @@
     <div class="mobile-bottom-nav-spacer" aria-hidden="true"></div>
     <nav class="mobile-bottom-nav" aria-label="Γρήγορη πλοήγηση">
       <a${activeKey === 'home' ? ' class="active" aria-current="page"' : ''} href="${homeHref}">${icon('home')}<span>Αρχική</span></a>
-      <a${activeKey === 'menu' ? ' class="active" aria-current="page"' : ''} href="menu.html">${icon('catalog')}<span>Κατάλογος</span></a>
+      <a${catalogActive ? ' class="active" aria-current="page"' : ''} href="menu.html">${icon('catalog')}<span>Κατάλογος</span></a>
       <a${activeKey === 'directions' ? ' class="active" aria-current="page"' : ''} href="directions.html">${icon('pin')}<span>Οδηγίες</span></a>
       <a${activeKey === 'contact' ? ' class="active" aria-current="page"' : ''} href="contact.html">${icon('contact')}<span>Επικοινωνία</span></a>
     </nav>`;

@@ -645,3 +645,17 @@
   .contact-visual-socials { display: grid; grid-template-columns: 1fr 1fr; }
   .contact-visual-socials a { justify-content: center; }
 }
+
+
+@media (max-width: 900px) {
+  .local-intro-grid { grid-template-columns: 1fr; gap: 28px; }
+  .seo-menu-grid, .local-feature-grid, .local-search-grid { grid-template-columns: 1fr; }
+  .cocktail-signature-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .local-seo-hero .page-hero-grid { gap: 28px; }
+  .local-seo-hero .section-title { font-size: clamp(3.1rem, 14vw, 4.5rem); }
+  .seo-menu-card, .local-feature, .local-search-card { padding: 22px; border-radius: 20px; }
+  .cocktail-signature-grid article { padding: 24px; }
+  .local-inline-links .container { justify-content: flex-start; }
+}
