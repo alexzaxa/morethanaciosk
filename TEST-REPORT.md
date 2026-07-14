@@ -21,3 +21,24 @@ External Google Fonts and the Google Maps iframe still depend on the visitor's n
 - Verified all local image, stylesheet, script and page references.
 - Verified no duplicate HTML IDs and no missing local assets.
 - Added mobile one-column layouts, horizontal category navigation and bottom-navigation clearance.
+
+## SEO validation — 14 July 2026
+
+- All six HTML documents contain one title, description, robots directive, canonical URL, Open Graph URL/image and valid JSON-LD block.
+- Canonical URLs point to `https://more-than-a-kiosk.alexzaxa.com/`.
+- JSON-LD parses successfully on every page.
+- `sitemap.xml` parses successfully and contains the four indexable business pages.
+- All local links, scripts, styles and images resolve to existing files.
+- JavaScript syntax checks passed.
+- Local HTTP checks returned 200 for the homepage, menu, contact, directions, sitemap, robots file and social preview image.
+- Social preview is 1200×630; Apple touch icon is 180×180.
+
+## Official logo and motion update — 14 July 2026
+
+- Replaced the extracted/cropped logo asset with the high-resolution logo supplied directly by the user.
+- Generated optimized transparent PNG/WebP logo files, 96/180/192/512 px icons and a refreshed 1200×630 social preview.
+- Added pinned AOS 2.3.4 and Anime.js 3.2.2 GitHub CDN builds; both are MIT-licensed.
+- Added custom coffee-bean rain, coffee steam, category-themed menu details, menu-item staggering, logo motion and subtle pointer tilt.
+- Added progressive fallbacks so all content remains visible when the third-party CDN is unavailable.
+- Added `prefers-reduced-motion` support for accessibility.
+- Rechecked JavaScript syntax, JSON-LD parsing, duplicate IDs and all local references.

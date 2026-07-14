@@ -26,3 +26,23 @@ The following photographs are free to use under the Unsplash License. They were 
 - Bartender — Louis Hansel: https://unsplash.com/photos/person-pouring-liquor-in-clear-drinking-glass-yLUvnCFI500
 
 Before commercial publication, the business owner should confirm the current opening hours, product availability, prices and permission for the public-listing venue photographs.
+
+## Official logo supplied by the business/user
+
+The high-resolution More Than a Kiosk logo used throughout the website was supplied directly by the user on 14 July 2026. The untouched source copy is stored at:
+
+- `assets/images/brand/official-logo-source.jpg`
+
+Optimized transparent versions used by the website:
+
+- `assets/images/brand/more-than-kiosk-logo.png`
+- `assets/images/brand/more-than-kiosk-logo.webp`
+
+## Animation libraries
+
+Pinned GitHub builds loaded through jsDelivr:
+
+- AOS 2.3.4 — https://github.com/michalsnik/aos — MIT License
+- Anime.js 3.2.2 — https://github.com/juliangarnier/anime — MIT License
+
+See `THIRD-PARTY-LICENSES.md` for the implementation notes.

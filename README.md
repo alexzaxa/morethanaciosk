@@ -19,3 +19,11 @@ Open `index.html` directly or run `open-local.bat` on Windows.
 - Map: https://maps.app.goo.gl/wuxAspR66vvUeKUTA
 
 Review `SOURCES.md` and confirm image permissions and opening hours before commercial publication.
+
+
+## Official logo and animation layer
+
+- The supplied official `More Than a Kiosk` logo is used in the header, footer, loaders, hero badge, social preview and app icons.
+- `css/coffee-motion.css` and `js/coffee-motion.js` add coffee-bean rain, steam, menu stagger effects, logo motion and subtle card tilt.
+- AOS 2.3.4 and Anime.js 3.2.2 are loaded from pinned jsDelivr GitHub URLs. Both projects use the MIT license; see `THIRD-PARTY-LICENSES.md`.
+- All motion respects the visitor's `prefers-reduced-motion` setting.

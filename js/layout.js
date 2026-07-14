@@ -12,8 +12,8 @@
   const activeKey = ['home', 'menu', 'directions', 'contact', 'privacy'].includes(page) ? page : '';
   const navMarkup = navItems.map((item) => `<a${item.key === activeKey ? ' class="active" aria-current="page"' : ''} href="${item.href}">${item.label}</a>`).join('');
   const logoMarkup = `
-    <img src="assets/images/brand/more-than-kiosk-logo.webp" alt="" width="720" height="720">
-    <span class="brand-copy"><strong>More Than a Kiosk</strong><small>Περίπτερο &amp; Καφέ</small></span>`;
+    <img src="assets/images/brand/more-than-kiosk-logo.webp" alt="" width="1000" height="1000">
+    <span class="brand-copy"><strong>More Than a Kiosk</strong><small>Χαλκούτσι · Καφέ &amp; Kiosk</small></span>`;
 
   document.querySelector('[data-shared-banner]')?.remove();
 

@@ -5,7 +5,7 @@
 ## Προτεινόμενο production policy
 
 ```text
-Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; frame-ancestors 'none'; script-src 'self' 'sha256-uoYw36IuyWL1X1Dcub+HOEl7QRmTnqASTngMcTkYMUA=' 'sha256-gLXwD5AsyQAi8ZySexvTRetq7zqq8otkxQiOdgxsY4c='; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self'; upgrade-insecure-requests
+Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; frame-ancestors 'none'; script-src 'self' https://cdn.jsdelivr.net 'sha256-uoYw36IuyWL1X1Dcub+HOEl7QRmTnqASTngMcTkYMUA=' 'sha256-gLXwD5AsyQAi8ZySexvTRetq7zqq8otkxQiOdgxsY4c='; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
@@ -20,7 +20,8 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 - Το HSTS ενεργοποιείται μόνο όταν το production domain και όλα τα subdomains είναι HTTPS-only.
 - Τα δύο CSP hashes αντιστοιχούν στο JSON-LD του `index.html` και στο base-path bootstrap του `404.html`.
 - Κάθε αλλαγή στο ακριβές inline περιεχόμενο απαιτεί νέο SHA-256 hash.
-- Αν προστεθούν analytics, fonts, forms, APIs ή άλλα third-party resources, η policy πρέπει να ενημερωθεί ελεγχόμενα· μην χρησιμοποιήσεις γενικό `*`.
+- Η policy επιτρέπει μόνο τα pinned animation assets από `cdn.jsdelivr.net` και τα υπάρχοντα Google Fonts. Αν προστεθούν άλλα third-party resources, ενημέρωσέ την ελεγχόμενα· μην χρησιμοποιήσεις γενικό `*`.
+- Αν θέλεις πλήρως self-hosted λειτουργία, κατέβασε τα AOS/Anime.js αρχεία στο repository, άλλαξε τα HTML paths και αφαίρεσε το jsDelivr από την CSP.
 
 ## Verification
 

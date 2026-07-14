@@ -1,7 +1,8 @@
 # Production checklist
 
-- [ ] Confirm the final public domain and add canonical/OG URLs if required.
-- [ ] Confirm photo and logo publication permission with the business owner.
+- [x] Canonical/OG URLs configured for `https://more-than-a-kiosk.alexzaxa.com/`.
+- [x] Official logo replaced with the high-resolution user-supplied artwork.
+- [ ] Confirm publication permission for the public-listing venue photographs.
 - [ ] Confirm phone number: `22950 71211`.
 - [ ] Confirm address: `Ποσειδώνος 13, Χαλκούτσι`.
 - [ ] Confirm opening hours shown on the site.
@@ -9,3 +10,11 @@
 - [ ] Add verified social links only if the business supplies them.
 - [ ] Test every page on iPhone and Android sizes.
 - [ ] Test call links and Google Maps links on a real mobile phone.
+
+- [x] Added LocalBusiness/WebSite/WebPage JSON-LD.
+- [x] Added sitemap.xml, robots.txt, social preview and web manifest.
+- [ ] Verify the deployed property in Google Search Console and submit the sitemap.
+- [ ] Add the website and menu URLs to the verified Google Business Profile.
+
+- [ ] Test the pinned jsDelivr animation files on the production domain.
+- [ ] Confirm the production CSP allows `cdn.jsdelivr.net`, Google Fonts and the click-to-load Google map.
