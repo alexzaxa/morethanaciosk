@@ -45,6 +45,10 @@
           <a class="primary-button" href="tel:+302295071211">${icon('phone')}Κάλεσε τώρα</a>
           <a class="secondary-button" href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">${icon('pin')}Οδηγίες</a>
         </div>
+        <div class="mobile-social-links" aria-label="Social media">
+          <a href="https://www.instagram.com/more_than_coffee_and_cocktail/" target="_blank" rel="noopener noreferrer me" aria-label="Instagram">${icon('instagram')}<span>Instagram</span></a>
+          <a href="https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer me" aria-label="Facebook">${icon('facebook')}<span>Facebook</span></a>
+        </div>
       </aside>
     </div>`;
 
@@ -56,9 +60,13 @@
         <div class="footer-brand">
           <a class="footer-logo" href="index.html">${logoMarkup}</a>
           <p>Καφές, ροφήματα, cocktails και επιλεγμένα ποτά στην Ποσειδώνος 13, Χαλκούτσι.</p>
+          <div class="footer-social-links" aria-label="Social media">
+            <a href="https://www.instagram.com/more_than_coffee_and_cocktail/" target="_blank" rel="noopener noreferrer me" aria-label="Instagram">${icon('instagram')}<span>Instagram</span></a>
+            <a href="https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer me" aria-label="Facebook">${icon('facebook')}<span>Facebook</span></a>
+          </div>
         </div>
         <div class="footer-column"><h3>Πλοήγηση</h3>${navMarkup}</div>
-        <div class="footer-column"><h3>Επικοινωνία</h3><a href="tel:+302295071211">22950 71211</a><a href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">Ποσειδώνος 13<br>Χαλκούτσι, Αττική ${icon('external')}</a></div>
+        <div class="footer-column"><h3>Επικοινωνία</h3><a href="tel:+302295071211">22950 71211</a><a href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">Ποσειδώνος 13<br>Χαλκούτσι, Αττική ${icon('external')}</a><a href="https://www.instagram.com/more_than_coffee_and_cocktail/" target="_blank" rel="noopener noreferrer me">${icon('instagram')}Instagram</a><a href="https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer me">${icon('facebook')}Facebook</a></div>
         <div class="footer-column"><h3>Ωράριο</h3><p>Κυρ–Πεμ<br><strong>06:00–01:00</strong></p><p>Παρ–Σαβ<br><strong>06:00–01:30</strong></p></div>
       </div>
       <div class="container footer-bottom"><span>© 2026 More Than a Kiosk</span><a href="privacy.html">Πολιτική απορρήτου</a></div>

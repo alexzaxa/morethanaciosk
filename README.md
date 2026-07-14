@@ -27,3 +27,9 @@ Review `SOURCES.md` and confirm image permissions and opening hours before comme
 - `css/coffee-motion.css` and `js/coffee-motion.js` add coffee-bean rain, steam, menu stagger effects, logo motion and subtle card tilt.
 - AOS 2.3.4 and Anime.js 3.2.2 are loaded from pinned jsDelivr GitHub URLs. Both projects use the MIT license; see `THIRD-PARTY-LICENSES.md`.
 - All motion respects the visitor's `prefers-reduced-motion` setting.
+
+
+## Social media
+
+- Instagram: https://www.instagram.com/more_than_coffee_and_cocktail/
+- Facebook: https://www.facebook.com/share/187zwPH4FL/?mibextid=wwXIfr

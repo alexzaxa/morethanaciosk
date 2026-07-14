@@ -1236,3 +1236,123 @@ body { background: var(--paper); }
   .catalog-group { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
   .catalog-group:hover { transform: translateY(-3px); border-color: rgba(201,133,86,.32); box-shadow: 0 14px 34px rgba(25,22,17,.08); }
 }
+
+
+/* Official social media links */
+.social-contact-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(420px, 1.18fr);
+  gap: 34px;
+  align-items: center;
+  margin: 28px 0;
+  padding: 34px;
+  overflow: hidden;
+  border: 1px solid rgba(29, 27, 23, .12);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(242, 182, 45, .22), transparent 32%),
+    radial-gradient(circle at 94% 88%, rgba(47, 150, 168, .13), transparent 30%),
+    #fff;
+  box-shadow: var(--shadow-soft);
+}
+.social-contact-panel::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -88px;
+  top: -92px;
+  border: 1px solid rgba(242, 182, 45, .4);
+  border-radius: 50%;
+  box-shadow: 0 0 0 28px rgba(121, 173, 85, .06), 0 0 0 56px rgba(47, 150, 168, .035);
+  pointer-events: none;
+}
+.social-contact-copy { position: relative; z-index: 1; }
+.social-contact-copy h2 {
+  max-width: 620px;
+  margin: 8px 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 4.6vw, 4.7rem);
+  font-weight: 400;
+  line-height: .92;
+}
+.social-contact-copy > p:not(.eyebrow) { max-width: 620px; margin: 0; color: var(--muted); }
+.social-contact-actions { position: relative; z-index: 1; display: grid; gap: 12px; }
+.social-profile-button {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 15px;
+  align-items: center;
+  min-height: 84px;
+  padding: 14px 17px;
+  border: 1px solid rgba(29, 27, 23, .12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .9);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(25, 22, 17, .08);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.social-profile-button:hover { transform: translateY(-3px); box-shadow: 0 15px 34px rgba(25, 22, 17, .14); }
+.social-profile-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: #fff;
+}
+.social-profile-icon .svg-icon { width: 27px; height: 27px; }
+.instagram-button .social-profile-icon { background: linear-gradient(135deg, #6a35d4, #dc2c75 55%, #f39b31); }
+.facebook-button .social-profile-icon { background: #1877f2; }
+.social-profile-button strong { display: block; font-size: 1.02rem; }
+.social-profile-button small { display: block; margin-top: 3px; overflow-wrap: anywhere; color: var(--muted); font-size: .79rem; }
+.social-profile-button .social-external { width: 18px; height: 18px; color: var(--muted); }
+.contact-visual-socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.contact-visual-socials a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: .86rem;
+  font-weight: 700;
+  transition: background .2s ease, transform .2s ease;
+}
+.contact-visual-socials a:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .16); }
+.contact-visual-socials .svg-icon { width: 18px; height: 18px; }
+.footer-social-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+.footer-social-links a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .84);
+  font-size: .82rem;
+  font-weight: 700;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.footer-social-links a:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, .34); background: rgba(255, 255, 255, .08); color: #fff; }
+.footer-social-links .svg-icon { width: 17px; height: 17px; }
+.mobile-social-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.mobile-social-links a {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: .84rem;
+  font-weight: 750;
+}
+.mobile-social-links .svg-icon { width: 19px; height: 19px; }

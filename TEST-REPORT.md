@@ -42,3 +42,10 @@ External Google Fonts and the Google Maps iframe still depend on the visitor's n
 - Added progressive fallbacks so all content remains visible when the third-party CDN is unavailable.
 - Added `prefers-reduced-motion` support for accessibility.
 - Rechecked JavaScript syntax, JSON-LD parsing, duplicate IDs and all local references.
+
+## Social profile update
+
+- Added official Instagram and Facebook links to the contact page.
+- Added social links to the shared footer and mobile drawer.
+- Added both profiles to LocalBusiness `sameAs` structured data on every HTML page.
+- Verified JavaScript syntax, JSON-LD validity, and all local page/asset links after the update.
