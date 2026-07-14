@@ -1,0 +1,87 @@
+(() => {
+  const icon = (name) => `<span class="svg-icon" aria-hidden="true">${window.MTAK_ICONS[name] || ''}</span>`;
+  const page = document.body.dataset.page || 'home';
+  const homeHref = page === 'home' ? '#home' : 'index.html';
+  const navItems = [
+    { key: 'home', label: 'Αρχική', href: homeHref },
+    { key: 'menu', label: 'Τι θα βρεις', href: 'menu.html' },
+    { key: 'gallery', label: 'Φωτογραφίες', href: page === 'home' ? '#gallery' : 'index.html#gallery' },
+    { key: 'directions', label: 'Οδηγίες', href: 'directions.html' },
+    { key: 'contact', label: 'Επικοινωνία', href: 'contact.html' }
+  ];
+  const activeKey = ['home', 'menu', 'directions', 'contact', 'privacy'].includes(page) ? page : '';
+  const navMarkup = navItems.map((item) => `<a${item.key === activeKey ? ' class="active" aria-current="page"' : ''} href="${item.href}">${item.label}</a>`).join('');
+  const logoMarkup = `
+    <img src="assets/images/brand/more-than-kiosk-logo.webp" alt="" width="720" height="720">
+    <span class="brand-copy"><strong>More Than a Kiosk</strong><small>Περίπτερο &amp; Καφέ</small></span>`;
+
+  document.querySelector('[data-shared-banner]')?.remove();
+
+  const header = document.querySelector('[data-shared-header]');
+  if (header) header.innerHTML = `
+    <header class="site-header">
+      <div class="container header-row">
+        <a class="brand kiosk-brand" href="index.html" aria-label="More Than a Kiosk — Αρχική">${logoMarkup}</a>
+        <nav class="desktop-nav" aria-label="Κύρια πλοήγηση">${navMarkup}</nav>
+        <div class="header-actions">
+          <a class="header-phone" href="tel:+302295071211">${icon('phone')}<span>22950 71211</span></a>
+          <button class="menu-toggle" type="button" data-open-menu aria-controls="mobileMenu" aria-expanded="false" aria-label="Άνοιγμα μενού">${icon('menu')}</button>
+        </div>
+      </div>
+    </header>`;
+
+  const drawer = document.querySelector('[data-shared-drawer]');
+  if (drawer) drawer.innerHTML = `
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="dialog-backdrop" type="button" data-close-menu aria-label="Κλείσιμο μενού"></button>
+      <aside class="mobile-menu-panel" role="dialog" aria-modal="true" aria-labelledby="mobileMenuTitle" tabindex="-1">
+        <div class="mobile-menu-head">
+          <div class="mobile-menu-brand">${logoMarkup}</div>
+          <button class="icon-button" type="button" data-close-menu aria-label="Κλείσιμο μενού">${icon('close')}</button>
+        </div>
+        <h2 class="sr-only" id="mobileMenuTitle">Μενού More Than a Kiosk</h2>
+        <nav class="mobile-menu-links" aria-label="Μενού κινητού">${navMarkup}<a${activeKey === 'privacy' ? ' class="active" aria-current="page"' : ''} href="privacy.html">Απόρρητο</a></nav>
+        <div class="mobile-menu-actions">
+          <a class="primary-button" href="tel:+302295071211">${icon('phone')}Κάλεσε τώρα</a>
+          <a class="secondary-button" href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">${icon('pin')}Οδηγίες</a>
+        </div>
+      </aside>
+    </div>`;
+
+  const footer = document.querySelector('[data-shared-footer]');
+  if (footer) footer.innerHTML = `
+    <footer class="site-footer kiosk-footer">
+      <div class="footer-rainbow" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">${logoMarkup}</a>
+          <p>Καφές, snacks και όλα όσα χρειάζεσαι στην Ποσειδώνος 13, Χαλκούτσι.</p>
+        </div>
+        <div class="footer-column"><h3>Πλοήγηση</h3>${navMarkup}</div>
+        <div class="footer-column"><h3>Επικοινωνία</h3><a href="tel:+302295071211">22950 71211</a><a href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">Ποσειδώνος 13<br>Χαλκούτσι, Αττική ${icon('external')}</a></div>
+        <div class="footer-column"><h3>Ωράριο</h3><p>Κυρ–Πεμ<br><strong>06:00–01:00</strong></p><p>Παρ–Σαβ<br><strong>06:00–01:30</strong></p></div>
+      </div>
+      <div class="container footer-bottom"><span>© 2026 More Than a Kiosk</span><a href="privacy.html">Πολιτική απορρήτου</a></div>
+    </footer>`;
+
+  const bottom = document.querySelector('[data-shared-bottom-nav]');
+  if (bottom) bottom.innerHTML = `
+    <div class="mobile-bottom-nav-spacer" aria-hidden="true"></div>
+    <nav class="mobile-bottom-nav" aria-label="Γρήγορη πλοήγηση">
+      <a${activeKey === 'home' ? ' class="active" aria-current="page"' : ''} href="${homeHref}">${icon('home')}<span>Αρχική</span></a>
+      <a${activeKey === 'menu' ? ' class="active" aria-current="page"' : ''} href="menu.html">${icon('catalog')}<span>Επιλογές</span></a>
+      <a${activeKey === 'directions' ? ' class="active" aria-current="page"' : ''} href="directions.html">${icon('pin')}<span>Οδηγίες</span></a>
+      <a${activeKey === 'contact' ? ' class="active" aria-current="page"' : ''} href="contact.html">${icon('contact')}<span>Επικοινωνία</span></a>
+    </nav>`;
+
+  const lightbox = document.querySelector('[data-gallery-lightbox]');
+  if (lightbox) lightbox.innerHTML = `
+    <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+      <button class="dialog-backdrop" type="button" data-close-lightbox aria-label="Κλείσιμο φωτογραφίας"></button>
+      <figure class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" tabindex="-1">
+        <button class="icon-button lightbox-close" type="button" data-close-lightbox aria-label="Κλείσιμο φωτογραφίας">${icon('close')}</button>
+        <img id="lightboxImage" src="assets/images/more-than-kiosk/storefront.webp" alt="">
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+    </div>`;
+})();
