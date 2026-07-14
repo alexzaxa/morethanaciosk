@@ -4,7 +4,7 @@
   const homeHref = page === 'home' ? '#home' : 'index.html';
   const navItems = [
     { key: 'home', label: 'Αρχική', href: homeHref },
-    { key: 'menu', label: 'Τι θα βρεις', href: 'menu.html' },
+    { key: 'menu', label: 'Κατάλογος', href: 'menu.html' },
     { key: 'gallery', label: 'Φωτογραφίες', href: page === 'home' ? '#gallery' : 'index.html#gallery' },
     { key: 'directions', label: 'Οδηγίες', href: 'directions.html' },
     { key: 'contact', label: 'Επικοινωνία', href: 'contact.html' }
@@ -55,7 +55,7 @@
       <div class="container footer-grid">
         <div class="footer-brand">
           <a class="footer-logo" href="index.html">${logoMarkup}</a>
-          <p>Καφές, snacks και όλα όσα χρειάζεσαι στην Ποσειδώνος 13, Χαλκούτσι.</p>
+          <p>Καφές, ροφήματα, cocktails και επιλεγμένα ποτά στην Ποσειδώνος 13, Χαλκούτσι.</p>
         </div>
         <div class="footer-column"><h3>Πλοήγηση</h3>${navMarkup}</div>
         <div class="footer-column"><h3>Επικοινωνία</h3><a href="tel:+302295071211">22950 71211</a><a href="https://maps.app.goo.gl/wuxAspR66vvUeKUTA" target="_blank" rel="noopener noreferrer">Ποσειδώνος 13<br>Χαλκούτσι, Αττική ${icon('external')}</a></div>
@@ -69,7 +69,7 @@
     <div class="mobile-bottom-nav-spacer" aria-hidden="true"></div>
     <nav class="mobile-bottom-nav" aria-label="Γρήγορη πλοήγηση">
       <a${activeKey === 'home' ? ' class="active" aria-current="page"' : ''} href="${homeHref}">${icon('home')}<span>Αρχική</span></a>
-      <a${activeKey === 'menu' ? ' class="active" aria-current="page"' : ''} href="menu.html">${icon('catalog')}<span>Επιλογές</span></a>
+      <a${activeKey === 'menu' ? ' class="active" aria-current="page"' : ''} href="menu.html">${icon('catalog')}<span>Κατάλογος</span></a>
       <a${activeKey === 'directions' ? ' class="active" aria-current="page"' : ''} href="directions.html">${icon('pin')}<span>Οδηγίες</span></a>
       <a${activeKey === 'contact' ? ' class="active" aria-current="page"' : ''} href="contact.html">${icon('contact')}<span>Επικοινωνία</span></a>
     </nav>`;

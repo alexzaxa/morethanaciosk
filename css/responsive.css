@@ -573,3 +573,60 @@
   .offer-card h2 { font-size: 2.15rem; }
   .page-hero-grid .section-title { font-size: clamp(3rem, 13.5vw, 4rem); line-height: .94; overflow-wrap: normal; word-break: normal; }
 }
+
+/* Official menu responsive layout */
+@media (max-width: 980px) {
+  .official-menu-hero { min-height: 560px; }
+  .official-menu-hero-content { padding-block: 130px 64px; }
+  .official-menu-intro { grid-template-columns: 1fr; gap: 18px; }
+  .catalog-group-grid--three { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .spirits-grid .catalog-group:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .official-menu-hero { min-height: 520px; align-items: end; }
+  .official-menu-hero-image { object-position: 61% center; }
+  .official-menu-hero-overlay { background: linear-gradient(0deg, rgba(15,14,12,.96) 0%, rgba(15,14,12,.72) 68%, rgba(15,14,12,.28) 100%); }
+  .official-menu-hero-content { padding-block: 104px 52px; text-align: left; }
+  .official-menu-hero .section-title { font-size: clamp(4rem, 18vw, 6.2rem); }
+  .official-menu-hero .hero-inline-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .official-menu-hero .hero-inline-actions a { width: 100%; }
+  .menu-category-nav { top: var(--header-height); }
+  .menu-category-nav-scroll { width: 100%; min-height: 62px; padding-inline: 14px; }
+  .menu-category-nav a { font-size: .76rem; padding: 9px 13px; }
+  .official-menu-section { padding-top: 58px; }
+  .official-menu-intro { margin-bottom: 28px; }
+  .catalog-panel { border-radius: 24px; margin-bottom: 22px; }
+  .catalog-panel-head { min-height: 235px; padding: 25px; }
+  .catalog-panel-title h2 { font-size: clamp(3.2rem, 14vw, 5.2rem); }
+  .catalog-panel-body { padding: 14px; }
+  .catalog-group-grid,
+  .catalog-group-grid--three { grid-template-columns: 1fr; gap: 12px; }
+  .catalog-group,
+  .spirits-grid .catalog-group { padding: 20px; }
+  .catalog-group--wide,
+  .spirits-grid .catalog-group:last-child { grid-column: auto; }
+  .catalog-group-heading h3,
+  .spirits-grid .catalog-group-heading h3 { font-size: 1.85rem; }
+  .menu-price-list--columns,
+  .signature-cocktails .menu-price-list { grid-template-columns: 1fr; }
+  .menu-price-list > li { padding: 10px 0; }
+  .menu-price-list strong,
+  .spirits-grid .menu-price-list strong { font-size: .9rem; }
+  .bottle-pricing { grid-template-columns: 1fr; min-height: 0; }
+  .bottle-pricing > div { min-height: 190px; padding: 24px; }
+  .bottle-pricing > div + div { border-top: 1px solid rgba(255,255,255,.18); border-left: 0; }
+  .bottle-pricing strong { font-size: 3.8rem; }
+  .official-menu-note { grid-template-columns: auto 1fr; padding: 20px; }
+  .official-menu-note .primary-button { grid-column: 1 / -1; width: 100%; }
+}
+
+@media (max-width: 430px) {
+  .official-menu-hero .hero-inline-actions { grid-template-columns: 1fr; }
+  .catalog-panel-head { min-height: 210px; }
+  .catalog-panel-title h2 { font-size: 3.35rem; }
+  .catalog-group { padding: 17px; border-radius: 18px; }
+  .menu-price-list > li { gap: 7px 10px; }
+  .menu-price-list strong { font-size: .86rem; }
+  .menu-price-list > li > span { font-size: .88rem; }
+}
