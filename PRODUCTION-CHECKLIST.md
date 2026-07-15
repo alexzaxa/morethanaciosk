@@ -2,7 +2,7 @@
 
 - [x] Canonical/OG URLs configured for `https://more-than-a-kiosk.alexzaxa.com/`.
 - [x] Official logo replaced with the high-resolution user-supplied artwork.
-- [ ] Confirm publication permission for the public-listing venue photographs.
+- [x] Replaced public-listing photographs with locally hosted Unsplash-licensed illustrative stock and documented every source.
 - [ ] Confirm phone number: `22950 71211`.
 - [ ] Confirm address: `Ποσειδώνος 13, Χαλκούτσι`.
 - [ ] Confirm opening hours shown on the site.
@@ -16,5 +16,5 @@
 - [ ] Verify the deployed property in Google Search Console and submit the sitemap.
 - [ ] Add the website and menu URLs to the verified Google Business Profile.
 
-- [ ] Test the pinned jsDelivr animation files on the production domain.
-- [ ] Confirm the production CSP allows `cdn.jsdelivr.net`, Google Fonts and the click-to-load Google map.
+- [x] Self-hosted the pinned animation files and removed automatic Google Fonts/jsDelivr requests.
+- [ ] Confirm the production CSP allows the click-to-load Google map.

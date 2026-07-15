@@ -2,14 +2,7 @@
   'use strict';
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const products = window.PRODUCTS || [];
-  const categories = window.CATALOG_CATEGORIES || [];
-  const categoryMap = new Map(categories.map((category) => [category.id, category]));
-  const catalogAudit = window.CATALOG_DATA_AUDIT || { releaseBlocked: false, issues: [] };
-  let filters = products.length ? new window.CatalogFilters(products) : null;
-  let visibleLimit = 12;
   let lastFocused = null;
-  const selectedProducts = new Map();
 
   const pageLoadStartedAt = performance.now();
   const arrivedFromPageTransition = (() => {
@@ -30,7 +23,6 @@
   let bottomNavObserver = null;
   let revealObserver = null;
   let heroMotionFrame = 0;
-  let searchTimer = 0;
 
   function markPageReady() {
     if (pageLoadFinished) return;
@@ -283,59 +275,6 @@
     handle.addEventListener('pointercancel', reset);
   }
 
-  function createElement(tag, className, text) {
-    const node = document.createElement(tag);
-    if (className) node.className = className;
-    if (text !== undefined) node.textContent = text;
-    return node;
-  }
-
-  function appendIcon(parent, name, className = '') {
-    const holder = createElement('span', `svg-icon ${className}`.trim());
-    holder.setAttribute('aria-hidden', 'true');
-    holder.innerHTML = window.MTAK_ICONS[name] || '';
-    parent.append(holder);
-    return holder;
-  }
-
-  function formatPrice(value) {
-    return new Intl.NumberFormat('el-GR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(value);
-  }
-
-  function createReleaseBlocker() {
-    const blocker = createElement('section', 'release-blocker');
-    blocker.setAttribute('role', 'alert');
-    blocker.append(createElement('h3', '', 'Ο κατάλογος δεν είναι διαθέσιμος για δημοσίευση'));
-    blocker.append(createElement('p', '', 'Υπάρχουν μη επιβεβαιωμένα στοιχεία προϊόντων ή αλλεργιογόνων. Απαιτείται έγκριση του ιδιοκτήτη πριν ενεργοποιηθεί το production mode.'));
-    return blocker;
-  }
-
-  function applyCatalogReleaseGate() {
-    if (!catalogAudit.releaseBlocked) return false;
-    document.body.dataset.catalogBlocked = 'true';
-    console.error('Catalog production release blocked:', catalogAudit.issues);
-    const featured = $('#featuredGrid');
-    const grid = $('#productGrid');
-    if (featured) featured.replaceChildren(createReleaseBlocker());
-    if (grid) grid.replaceChildren(createReleaseBlocker());
-    const count = $('#resultCount');
-    if (count) count.textContent = 'Κατάλογος μη διαθέσιμος';
-    $$('.catalog-toolbar input, .catalog-toolbar select, .catalog-toolbar button').forEach((control) => {
-      control.disabled = true;
-    });
-    $('#loadMoreBtn')?.setAttribute('hidden', '');
-    return true;
-  }
-
-  function safeImage(image, fallback = 'assets/images/brand/more-than-kiosk-logo.webp') {
-    image.addEventListener('error', () => {
-      if (!image.dataset.fallbackApplied) {
-        image.dataset.fallbackApplied = 'true';
-        image.src = fallback;
-      }
-    }, { once: true });
-  }
-
   function focusables(root) {
     return $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', root)
       .filter((element) => !element.hidden && element.getClientRects().length > 0);
@@ -408,107 +347,6 @@
     }
   }
 
-  function createProductCard(product) {
-    const article = createElement('article', 'product-card reveal');
-    const button = createElement('button', 'product-card-button');
-    button.type = 'button';
-    button.dataset.productId = product.id;
-    button.setAttribute('aria-label', `Προβολή λεπτομερειών: ${product.name}`);
-
-    const media = createElement('span', 'product-card-media');
-    const image = document.createElement('img');
-    image.src = product.image;
-    image.alt = product.name;
-    image.loading = 'lazy';
-    image.width = 1200;
-    image.height = 900;
-    safeImage(image);
-    media.append(image);
-    if (product.badge) media.append(createElement('span', 'product-badge', product.badge));
-
-    const body = createElement('span', 'product-card-body');
-    const category = categoryMap.get(product.category)?.label || product.category;
-    body.append(createElement('span', 'product-category', category));
-    body.append(createElement('span', 'product-name', product.name));
-    body.append(createElement('span', 'product-description', product.description));
-
-    const footer = createElement('span', 'product-card-footer');
-    footer.append(createElement('strong', 'product-price', formatPrice(product.price)));
-    const detail = createElement('span', 'product-detail-link', 'Λεπτομέρειες');
-    appendIcon(detail, 'arrow');
-    footer.append(detail);
-    body.append(footer);
-
-    button.append(media, body);
-    const currentQuantity = selectedProducts.get(product.id) || 0;
-    const selectButton = createElement('button', 'product-select-button', currentQuantity ? `Προσθήκη (${currentQuantity})` : 'Προσθήκη');
-    selectButton.type = 'button';
-    selectButton.dataset.productId = product.id;
-    selectButton.setAttribute('aria-pressed', String(selectedProducts.has(product.id)));
-    selectButton.setAttribute('aria-label', `Επιλογή προϊόντος: ${product.name}`);
-    selectButton.addEventListener('click', () => {
-      selectedProducts.set(product.id, (selectedProducts.get(product.id) || 0) + 1);
-      syncProductSelectionButtons();
-      updateSelectionSummary();
-      const summary = $('#selectionSummary');
-      summary?.classList.remove('selection-changed');
-      window.requestAnimationFrame(() => summary?.classList.add('selection-changed'));
-    });
-    article.append(button, selectButton);
-    button.addEventListener('click', () => openProduct(product, button));
-    return article;
-  }
-
-  function updateSelectionSummary() {
-    const selectionSummary = $('#selectionSummary');
-    if (!selectionSummary || !filters) return;
-    const chosen = [...selectedProducts.entries()].map(([id, quantity]) => ({ product: products.find((item) => item.id === id), quantity })).filter((item) => item.product);
-    selectionSummary.classList.toggle('is-empty', !chosen.length);
-    const totalQuantity = chosen.reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = chosen.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-    selectionSummary.dataset.orderPayload = JSON.stringify(chosen.map(({ product, quantity }) => ({ id: product.id, name: product.name, quantity, unitPrice: product.price })));
-    $('#selectionTitle').textContent = chosen.length ? `${totalQuantity} ${totalQuantity === 1 ? 'τεμάχιο' : 'τεμάχια'} · ${formatPrice(totalPrice)}` : 'Δεν έχεις επιλέξει προϊόν';
-    const list = $('#selectionList');
-    list.replaceChildren(...chosen.map(({ product, quantity }) => {
-      const item = createElement('li', 'selection-item');
-      const label = createElement('span', '', product.name);
-      label.append(createElement('strong', '', formatPrice(product.price * quantity)));
-      const controls = createElement('div', 'quantity-controls');
-      const decrease = createElement('button', '', '−');
-      decrease.type = 'button';
-      decrease.setAttribute('aria-label', `Μείωση ποσότητας: ${product.name}`);
-      const quantityLabel = createElement('strong', '', String(quantity));
-      quantityLabel.setAttribute('aria-label', `Ποσότητα ${quantity}`);
-      const increase = createElement('button', '', '+');
-      increase.type = 'button';
-      increase.setAttribute('aria-label', `Αύξηση ποσότητας: ${product.name}`);
-      decrease.addEventListener('click', () => {
-        if (quantity <= 1) selectedProducts.delete(product.id);
-        else selectedProducts.set(product.id, quantity - 1);
-        syncProductSelectionButtons();
-        updateSelectionSummary();
-      });
-      increase.addEventListener('click', () => {
-        selectedProducts.set(product.id, quantity + 1);
-        syncProductSelectionButtons();
-        updateSelectionSummary();
-      });
-      controls.append(decrease, quantityLabel, increase);
-      item.append(label, controls);
-      return item;
-    }));
-    const clear = $('#selectionClear');
-    if (clear) clear.hidden = !chosen.length;
-  }
-
-  function syncProductSelectionButtons() {
-    $$('.product-select-button').forEach((button) => {
-      const quantity = selectedProducts.get(button.dataset.productId) || 0;
-      button.setAttribute('aria-pressed', String(quantity > 0));
-      button.textContent = quantity ? `Προσθήκη (${quantity})` : 'Προσθήκη';
-    });
-  }
-
   function revealElements(root = document) {
     const elements = $$('.reveal:not(.visible)', root);
     elements.forEach((element, index) => prepareRevealElement(element, index));
@@ -526,167 +364,6 @@
       }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
     }
     elements.forEach((element) => revealObserver.observe(element));
-  }
-
-  function renderFeatured() {
-    const grid = $('#featuredGrid');
-    if (!grid || !products.length) return;
-    const featuredIds = ['freddo-espresso', 'cappuccino', 'avocado-toast', 'classic-burger', 'ice-cream-cup', 'aperol-spritz'];
-    const featured = featuredIds.map((id) => products.find((product) => product.id === id)).filter(Boolean);
-    grid.replaceChildren(...featured.map(createProductCard));
-    revealElements(grid);
-  }
-
-  function renderCategories() {
-    const strip = $('#categoryStrip');
-    if (!strip || !filters) return;
-    strip.replaceChildren();
-    categories.forEach((category) => {
-      const button = createElement('button', 'category-button');
-      button.type = 'button';
-      button.dataset.category = category.id;
-      button.setAttribute('aria-pressed', String(filters.state.category === category.id));
-      appendIcon(button, category.icon);
-      button.append(createElement('span', '', category.label));
-      button.addEventListener('click', () => {
-        filters.set('category', category.id);
-        visibleLimit = 12;
-        $$('.category-button', strip).forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-        button.classList.remove('selection-pop');
-        requestAnimationFrame(() => button.classList.add('selection-pop'));
-        window.setTimeout(() => button.classList.remove('selection-pop'), 420);
-        button.scrollIntoView({ behavior: prefersReducedMotion.matches ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
-        renderCatalog();
-      });
-      strip.append(button);
-    });
-  }
-
-  function renderCatalog() {
-    const grid = $('#productGrid');
-    if (!grid || !filters) return;
-    const result = filters.result();
-    const visible = result.slice(0, visibleLimit);
-    updateSelectionSummary();
-    grid.replaceChildren(...visible.map(createProductCard));
-    const count = $('#resultCount');
-    if (count) count.textContent = `${result.length} ${result.length === 1 ? 'προϊόν' : 'προϊόντα'}`;
-    const loadMore = $('#loadMoreBtn');
-    if (loadMore) {
-      loadMore.hidden = visible.length >= result.length;
-      loadMore.textContent = `Προβολή περισσότερων (${result.length - visible.length})`;
-    }
-    if (!result.length) {
-      const empty = createElement('div', 'empty-state');
-      appendIcon(empty, 'search');
-      empty.append(createElement('h3', '', 'Δεν βρέθηκαν προϊόντα'));
-      empty.append(createElement('p', '', 'Δοκίμασε διαφορετική αναζήτηση ή καθάρισε τα φίλτρα.'));
-      grid.append(empty);
-    }
-    revealElements(grid);
-  }
-
-  function bindFilters() {
-    const search = $('#productSearch');
-    const sort = $('#sortProducts');
-    const vegetarian = $('#vegetarianFilter');
-    const vegan = $('#veganFilter');
-    const popular = $('#popularFilter');
-    const panel = $('.filter-panel');
-    const toggle = $('#filterToggle');
-    const filterCount = $('#filterCount');
-    const toolsToggle = $('#catalogToolsToggle');
-    const toolsClose = $('#catalogToolsClose');
-    const toolsBackdrop = $('#catalogToolsBackdrop');
-    const catalogToolbar = $('#catalogToolbar');
-    const catalogSection = $('.catalog-section');
-    if (catalogSection && 'IntersectionObserver' in window) {
-      const catalogVisibility = new IntersectionObserver(([entry]) => {
-        document.body.classList.toggle('catalog-in-view', entry.isIntersecting);
-      }, { threshold: 0, rootMargin: '-12% 0px -12% 0px' });
-      catalogVisibility.observe(catalogSection);
-    } else if (catalogSection) document.body.classList.add('catalog-in-view');
-    $('#selectionClear')?.addEventListener('click', () => {
-      selectedProducts.clear();
-      $$('.product-select-button').forEach((item) => { item.setAttribute('aria-pressed', 'false'); item.textContent = 'Προσθήκη'; });
-      updateSelectionSummary();
-    });
-    const setToolsOpen = (open) => {
-      document.body.classList.toggle('catalog-tools-open', open);
-      toolsToggle?.setAttribute('aria-expanded', String(open));
-      if (toolsBackdrop) toolsBackdrop.hidden = !open;
-      if (open) window.requestAnimationFrame(() => $('#productSearch')?.focus());
-      else toolsToggle?.focus();
-    };
-    toolsToggle?.addEventListener('click', () => setToolsOpen(!document.body.classList.contains('catalog-tools-open')));
-    toolsClose?.addEventListener('click', () => setToolsOpen(false));
-    toolsBackdrop?.addEventListener('click', () => setToolsOpen(false));
-    catalogToolbar?.addEventListener('keydown', (event) => { if (event.key === 'Escape') setToolsOpen(false); });
-    const updateFilterSummary = () => {
-      const count = Number(sort?.value !== 'featured') + Number(vegetarian?.checked) + Number(vegan?.checked) + Number(popular?.checked);
-      if (filterCount) {
-        filterCount.textContent = String(count);
-        filterCount.hidden = count === 0;
-      }
-    };
-    toggle?.addEventListener('click', () => {
-      const open = !panel?.classList.contains('filters-open');
-      panel?.classList.toggle('filters-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-    search?.addEventListener('input', () => {
-      window.clearTimeout(searchTimer);
-      searchTimer = window.setTimeout(() => {
-        filters.set('search', search.value);
-        visibleLimit = 12;
-        renderCatalog();
-      }, mobileNavMedia.matches ? 90 : 55);
-    });
-    sort?.addEventListener('change', () => { filters.set('sort', sort.value); updateFilterSummary(); renderCatalog(); });
-    vegetarian?.addEventListener('change', () => { filters.set('vegetarian', vegetarian.checked); updateFilterSummary(); renderCatalog(); });
-    vegan?.addEventListener('change', () => { filters.set('vegan', vegan.checked); updateFilterSummary(); renderCatalog(); });
-    popular?.addEventListener('change', () => { filters.set('popular', popular.checked); updateFilterSummary(); renderCatalog(); });
-    $('#clearFilters')?.addEventListener('click', () => {
-      filters.clear();
-      visibleLimit = 12;
-      if (search) search.value = '';
-      if (sort) sort.value = 'featured';
-      [vegetarian, vegan, popular].forEach((input) => { if (input) input.checked = false; });
-      updateFilterSummary();
-      $$('.category-button').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.category === 'all')));
-      renderCatalog();
-    });
-    $('#loadMoreBtn')?.addEventListener('click', () => { visibleLimit += 12; renderCatalog(); });
-    updateFilterSummary();
-  }
-
-  function fillList(list, values) {
-    list.replaceChildren(...(values?.length ? values : ['Δεν έχουν καταχωριστεί']).map((value) => createElement('li', '', value)));
-  }
-
-  function openProduct(product, opener) {
-    const modal = $('#productModal');
-    if (!modal) return;
-    const image = $('#modalImage');
-    image.src = product.image;
-    image.alt = product.name;
-    delete image.dataset.fallbackApplied;
-    safeImage(image);
-    $('#modalCategory').textContent = categoryMap.get(product.category)?.label || product.category;
-    $('#modalName').textContent = product.name;
-    $('#modalPrice').textContent = formatPrice(product.price);
-    $('#modalDescription').textContent = product.fullDescription || product.description;
-    fillList($('#modalIngredients'), product.ingredients);
-    fillList($('#modalAllergens'), product.allergens);
-    openDialog(modal, opener);
-  }
-
-  function bindProductModal() {
-    const modal = $('#productModal');
-    if (!modal) return;
-    $$('[data-close-product]', modal).forEach((button) => button.addEventListener('click', () => closeDialog(modal)));
-    modal.addEventListener('keydown', (event) => trapDialog(event, modal));
-    bindMobileSheetGesture(modal);
   }
 
   function bindMobileMenu() {
@@ -775,6 +452,26 @@
     });
   }
 
+  function setupMenuCategoryFab() {
+    const toggle = $('[data-menu-category-toggle]');
+    const nav = $('#menuCategoryNav');
+    const backdrop = $('[data-menu-category-close]');
+    if (!toggle || !nav || !backdrop) return;
+
+    const setOpen = (open) => {
+      document.body.classList.toggle('menu-category-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Κλείσιμο κατηγοριών καταλόγου' : 'Άνοιγμα κατηγοριών καταλόγου');
+      nav.setAttribute('aria-hidden', String(!open));
+      backdrop.hidden = !open;
+    };
+
+    toggle.addEventListener('click', () => setOpen(!document.body.classList.contains('menu-category-open')));
+    backdrop.addEventListener('click', () => setOpen(false));
+    nav.addEventListener('click', (event) => { if (event.target.closest('a[href^="#"]')) setOpen(false); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
+  }
+
   function bindHeader() {
     const header = $('.site-header');
     if (!header) return;
@@ -797,22 +494,13 @@
     hydrateInlineIcons();
     setupMotionSystem();
     setupBottomNavClearance();
+    setupMenuCategoryFab();
     bindHeader();
     bindMobileMenu();
-    bindProductModal();
     bindGallery();
     bindMapConsent();
     bindPageUtilities();
 
-    const catalogBlocked = applyCatalogReleaseGate();
-    if (!catalogBlocked) {
-      renderFeatured();
-      if ($('#productGrid')) {
-        renderCategories();
-        bindFilters();
-        renderCatalog();
-      }
-    }
     revealElements();
     window.__MTAK_APP_INITIALIZED = true;
   });

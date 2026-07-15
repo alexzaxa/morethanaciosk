@@ -1,5 +1,16 @@
 # Test report — More Than a Kiosk
 
+## Remediation audit — 15 July 2026
+
+- Replaced and removed all legacy public-listing venue photographs.
+- Downloaded five Unsplash-licensed stock photographs into `assets/images/licensed-stock/`, optimized them locally, documented each source, and labelled their use as illustrative.
+- Self-hosted AOS 2.3.4 and Anime.js 3.2.2; removed Google Fonts and jsDelivr requests from all nine pages.
+- Added no-JavaScript navigation to every page and corrected loader accessibility semantics.
+- Removed the unused dynamic product catalog/filter/modal implementation from `js/app.js`.
+- Added intrinsic dimensions to the previously incomplete contact image and synchronized dimensions for the replacement photographs.
+- Updated the privacy notice, asset approval record, dependency record, CSP guidance, production checklist and source documentation.
+- Added `validate.ps1`; it passes all nine pages, local references, duplicate IDs, JSON-LD, sitemap, manifest, required metadata and self-hosting rules.
+
 Checks completed after the redesign:
 
 - Every HTML page parses without missing local files or duplicate IDs.

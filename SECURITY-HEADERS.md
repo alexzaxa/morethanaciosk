@@ -5,7 +5,7 @@
 ## Προτεινόμενο production policy
 
 ```text
-Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; frame-ancestors 'none'; script-src 'self' https://cdn.jsdelivr.net 'sha256-uoYw36IuyWL1X1Dcub+HOEl7QRmTnqASTngMcTkYMUA=' 'sha256-gLXwD5AsyQAi8ZySexvTRetq7zqq8otkxQiOdgxsY4c='; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; upgrade-insecure-requests
+Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; frame-ancestors 'none'; script-src 'self' 'sha256-iQAmT8UrUWiE31ezUKj8OyFpqYPAKvq2RiSxVdhvL6o='; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://www.google.com; connect-src 'self'; upgrade-insecure-requests
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
@@ -18,10 +18,9 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 - Το `frame-src https://www.google.com` χρειάζεται μόνο για τον click-to-load χάρτη.
 - Το `frame-ancestors 'none'` είναι η κύρια προστασία από framing. Το `X-Frame-Options: DENY` είναι μόνο legacy fallback.
 - Το HSTS ενεργοποιείται μόνο όταν το production domain και όλα τα subdomains είναι HTTPS-only.
-- Τα δύο CSP hashes αντιστοιχούν στο JSON-LD του `index.html` και στο base-path bootstrap του `404.html`.
+- Το μοναδικό CSP hash αντιστοιχεί στο base-path bootstrap του `404.html`. Τα JSON-LD blocks είναι μη εκτελέσιμα data blocks.
 - Κάθε αλλαγή στο ακριβές inline περιεχόμενο απαιτεί νέο SHA-256 hash.
-- Η policy επιτρέπει μόνο τα pinned animation assets από `cdn.jsdelivr.net` και τα υπάρχοντα Google Fonts. Αν προστεθούν άλλα third-party resources, ενημέρωσέ την ελεγχόμενα· μην χρησιμοποιήσεις γενικό `*`.
-- Αν θέλεις πλήρως self-hosted λειτουργία, κατέβασε τα AOS/Anime.js αρχεία στο repository, άλλαξε τα HTML paths και αφαίρεσε το jsDelivr από την CSP.
+- Οι γραμματοσειρές, οι εικόνες και τα pinned animation assets είναι self-hosted. Αν προστεθούν άλλοι πάροχοι, ενημέρωσε την policy ελεγχόμενα και μην χρησιμοποιήσεις γενικό `*`.
 
 ## Verification
 

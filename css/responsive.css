@@ -116,6 +116,17 @@
   .brand img { width: 150px; }
   .header-phone { display: none; }
   .section { padding: 68px 0; }
+  .coffee-ritual { padding: 76px 0 88px; }
+  .coffee-ritual-grid { grid-template-columns: 1fr; gap: 46px; text-align: center; }
+  .coffee-ritual-copy .section-copy { margin-inline: auto; }
+  .coffee-cup-showcase { gap: 8px; }
+  .coffee-cup-card { padding: 14px 7px 16px; border-radius: 20px; }
+  .coffee-cup-card-featured { padding-top: 26px; transform: translateY(-10px); }
+  .coffee-cup-card-featured:hover { transform: translateY(-14px); }
+  .coffee-cup-card img { height: 132px; }
+  .coffee-cup-card strong { font-size: 1.05rem; }
+  .coffee-cup-card > span:not(.coffee-cup-badge) { font-size: .66rem; line-height: 1.25; }
+  .coffee-cup-badge { top: 8px; padding: 3px 7px; font-size: .52rem; }
   .hero { min-height: 72svh; align-items: center; }
   .hero-production::before {
     content: "";
@@ -591,9 +602,13 @@
   .official-menu-hero .section-title { font-size: clamp(4rem, 18vw, 6.2rem); }
   .official-menu-hero .hero-inline-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .official-menu-hero .hero-inline-actions a { width: 100%; }
-  .menu-category-nav { top: var(--header-height); }
-  .menu-category-nav-scroll { width: 100%; min-height: 62px; padding-inline: 14px; }
-  .menu-category-nav a { font-size: .76rem; padding: 9px 13px; }
+  .menu-category-fab { top: auto; right: 17px; bottom: calc(var(--mobile-bottom-nav-clearance) + 24px); width: 56px; height: 56px; transform: none; }
+  .menu-category-fab:hover { transform: scale(1.04); }
+  .menu-category-fab-label { display: none; }
+  .menu-category-nav { top: auto; right: 10px; bottom: calc(var(--mobile-bottom-nav-clearance) + 92px); left: 10px; width: auto; max-height: min(62svh, 470px); overflow-y: auto; border-radius: 23px; transform: translateY(20px) scale(.97); transform-origin: center bottom; }
+  .menu-category-open .menu-category-nav { transform: none; }
+  .menu-category-nav-scroll { width: 100%; padding: 0; }
+  .menu-category-nav a { min-height: 48px; font-size: .8rem; padding: 10px 14px; }
   .official-menu-section { padding-top: 58px; }
   .official-menu-intro { margin-bottom: 28px; }
   .catalog-panel { border-radius: 24px; margin-bottom: 22px; }

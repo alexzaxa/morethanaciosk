@@ -90,7 +90,7 @@
       <button class="dialog-backdrop" type="button" data-close-lightbox aria-label="Κλείσιμο φωτογραφίας"></button>
       <figure class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" tabindex="-1">
         <button class="icon-button lightbox-close" type="button" data-close-lightbox aria-label="Κλείσιμο φωτογραφίας">${icon('close')}</button>
-        <img id="lightboxImage" src="assets/images/more-than-kiosk/storefront.webp" alt="">
+        <img id="lightboxImage" src="assets/images/licensed-stock/cafe-interior.jpg" alt="" width="1600" height="1067">
         <figcaption id="lightboxCaption"></figcaption>
       </figure>
     </div>`;

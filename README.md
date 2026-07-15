@@ -13,6 +13,9 @@ A responsive multi-page website for **More Than a Kiosk, περίπτερο & κ
 ## Run locally
 Open `index.html` directly or run `open-local.bat` on Windows.
 
+## Validate
+Run `powershell -ExecutionPolicy Bypass -File .\validate.ps1` to check local references, duplicate IDs, JSON-LD, required metadata, sitemap/manifest syntax, no-JavaScript navigation, and the self-hosting policy.
+
 ## Business details used
 - Address: Ποσειδώνος 13, Χαλκούτσι, Αττική
 - Phone: 22950 71211
