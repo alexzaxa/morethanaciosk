@@ -9,10 +9,10 @@ The website now contains dedicated, useful pages for the main local searches:
 
 ## Required after deployment
 
-1. Add `https://more-than-a-kiosk.alexzaxa.com/` as the official website in the verified Google Business Profile.
-2. Add `https://more-than-a-kiosk.alexzaxa.com/menu.html` as the menu link.
+1. Add `https://morethanakiosk.com/` as the official website in the verified Google Business Profile.
+2. Add `https://morethanakiosk.com/menu.html` as the menu link.
 3. Keep the exact same name, address, telephone and opening hours on Google, Facebook, Instagram and the website.
-4. Verify the site in Google Search Console and submit `https://more-than-a-kiosk.alexzaxa.com/sitemap.xml`.
+4. Verify the site in Google Search Console and submit `https://morethanakiosk.com/sitemap.xml`.
 5. Request indexing for the homepage, menu, coffee, cocktails and kiosk pages.
 6. Upload new, real storefront, coffee and cocktail photos to the Google Business Profile regularly.
 7. Ask genuine customers for Google reviews, without incentives, and reply to them.

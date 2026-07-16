@@ -1,6 +1,6 @@
 # Production checklist
 
-- [x] Canonical/OG URLs configured for `https://more-than-a-kiosk.alexzaxa.com/`.
+- [x] Canonical/OG URLs configured for `https://morethanakiosk.com/`.
 - [x] Official logo replaced with the high-resolution user-supplied artwork.
 - [x] Replaced public-listing photographs with locally hosted Unsplash-licensed illustrative stock and documented every source.
 - [ ] Confirm phone number: `22950 71211`.

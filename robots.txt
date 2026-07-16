@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://more-than-a-kiosk.alexzaxa.com/sitemap.xml
+Sitemap: https://morethanakiosk.com/sitemap.xml

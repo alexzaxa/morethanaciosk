@@ -36,7 +36,7 @@ External Google Fonts and the Google Maps iframe still depend on the visitor's n
 ## SEO validation — 14 July 2026
 
 - All six HTML documents contain one title, description, robots directive, canonical URL, Open Graph URL/image and valid JSON-LD block.
-- Canonical URLs point to `https://more-than-a-kiosk.alexzaxa.com/`.
+- Canonical URLs point to `https://morethanakiosk.com/`.
 - JSON-LD parses successfully on every page.
 - `sitemap.xml` parses successfully and contains the four indexable business pages.
 - All local links, scripts, styles and images resolve to existing files.
