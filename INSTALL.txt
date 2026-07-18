@@ -1,20 +1,25 @@
-MORE THAN A KIOSK — PHOTO FIX PATCH
+MORE THAN A KIOSK — COCKTAIL PHOTO & MENU MOTION UPDATE
 
 Repository:
 alexzaxa/morethanaciosk
 
 INSTALLATION
 1. Extract this ZIP.
-2. Copy everything inside the folder into the repository root.
-3. Allow these files to replace the existing js/boot.js.
-4. Keep all folders exactly as provided.
-5. Commit and push to the main branch.
-6. Wait for GitHub Pages to redeploy, then hard-refresh with Ctrl+F5.
+2. Copy the folders "assets" and "js" into the repository root.
+3. Allow js/photo-fixes.js to replace the existing file.
+4. Commit and push the changes to the main branch.
+5. Wait for GitHub Pages to redeploy.
+6. Hard-refresh the website with Ctrl+F5.
 
 CHANGES
-- Replaces the Ροφήματα header with a proper hot-chocolate photo.
-- Restores an actual coffee-drink image on “Ο καφές σου από τις 06:00”.
-- Displays four Hand Pickers coffee packages without cropping.
-- Uses a mobile-safe 2×2 package layout.
-- Removes the repeated gallery arrangement and keeps a smaller unique-photo selection.
-- Keeps cocktail and kiosk headers relevant to their sections.
+- Adds the new top-down pink cocktail photo.
+- Adds the new hand-held cocktail photo by the sea.
+- Uses the hand-held photo in the main menu hero.
+- Uses the top-down photo in the Cocktails menu section.
+- Keeps responsive crops for desktop and mobile.
+- Replaces the coffee-bean-only falling effect on the menu page.
+- Adds a subtle mixed ambient animation with coffee beans, cocktail glasses,
+  and bottle silhouettes carrying real menu brand names such as Aperol,
+  Absolut, Bacardi, Tanqueray and Jack Daniel's.
+- Uses brand-name text only; it does not imitate or invent official logos.
+- Respects prefers-reduced-motion and reduces the element count on mobile.
