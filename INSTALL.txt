@@ -1,0 +1,20 @@
+MORE THAN A KIOSK — PHOTO FIX PATCH
+
+Repository:
+alexzaxa/morethanaciosk
+
+INSTALLATION
+1. Extract this ZIP.
+2. Copy everything inside the folder into the repository root.
+3. Allow these files to replace the existing js/boot.js.
+4. Keep all folders exactly as provided.
+5. Commit and push to the main branch.
+6. Wait for GitHub Pages to redeploy, then hard-refresh with Ctrl+F5.
+
+CHANGES
+- Replaces the Ροφήματα header with a proper hot-chocolate photo.
+- Restores an actual coffee-drink image on “Ο καφές σου από τις 06:00”.
+- Displays four Hand Pickers coffee packages without cropping.
+- Uses a mobile-safe 2×2 package layout.
+- Removes the repeated gallery arrangement and keeps a smaller unique-photo selection.
+- Keeps cocktail and kiosk headers relevant to their sections.

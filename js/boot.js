@@ -5,6 +5,12 @@
   root.classList.remove('no-js');
   root.classList.add('js');
 
+  const photoFixes = document.createElement('script');
+  photoFixes.src = 'js/photo-fixes.js';
+  photoFixes.async = false;
+  photoFixes.defer = true;
+  document.head.appendChild(photoFixes);
+
   const failOpen = () => {
     root.classList.add('js-fallback');
     const body = document.body;
